@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Flicks</string>
     <string name="movie_poster">Movie poster</string>
+    <string name="view_on_themoviedb">View on TheMovieDB</string>
+    <string name="textWithHtml">The URL link is &lt;a href="https://www.themoviedb.org/movie/%s">Google&lt;/a></string>
+
+
 </resources>

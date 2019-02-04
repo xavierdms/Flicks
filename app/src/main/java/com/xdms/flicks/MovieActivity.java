@@ -46,7 +46,6 @@ public class MovieActivity extends AppCompatActivity {
         rvMovies.setAdapter(adapter);
 
         AsyncHttpClient client = new AsyncHttpClient();
-        //client.addHeader("Accept", "application/json");
 
 
         client.get(MOVIE_URL, new JsonHttpResponseHandler()

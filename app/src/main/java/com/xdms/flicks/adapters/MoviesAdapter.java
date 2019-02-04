@@ -1,12 +1,15 @@
 package com.xdms.flicks.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +18,8 @@ import com.xdms.flicks.R;
 import com.xdms.flicks.models.Movie;
 
 import java.util.List;
+
+import static android.support.v4.content.ContextCompat.startActivity;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder>
 {
@@ -55,19 +60,37 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         TextView tvTitle;
         TextView tvOverview;
         ImageView ivPoster;
+        TextView tvDate;
+        Button btnLink;
+
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvOverview = itemView.findViewById(R.id.tvOverview);
             ivPoster = itemView.findViewById(R.id.ivPoster);
+            tvDate = itemView.findViewById(R.id.tvDate);
+            btnLink = itemView.findViewById(R.id.btnLink);
+
+
         }
 
-        public void bind(Movie movie)
+        public void bind(final Movie movie)
         {
             tvTitle.setText(movie.getTitle());
             tvOverview.setText(movie.getOverview());
+            tvDate.setText(movie.getDate());
             Glide.with(context).load(movie.getPosterPath()).into(ivPoster);
+            btnLink.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String url = movie.getLink();
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(context, i, null);
+                }
+            });
         }
     }
 }
