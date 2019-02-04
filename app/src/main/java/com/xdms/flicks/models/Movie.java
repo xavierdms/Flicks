@@ -15,6 +15,7 @@ public class Movie
     String release_date;
     String movie_id;
     String link;
+    String backdropPath;
 
 
 
@@ -25,6 +26,7 @@ public class Movie
         release_date = jsonObject.getString("release_date");
         movie_id = jsonObject.getString("id");
         link = toString().format("https://www.themoviedb.org/movie/%s", movie_id);
+        backdropPath = jsonObject.getString("backdrop_path");
 
     }
 
@@ -40,6 +42,11 @@ public class Movie
 
     public String getPosterPath() {
         return String.format("https://image.tmdb.org/t/p/w342/%s", posterPath);
+    }
+
+
+    public String getBackdropPath() {
+        return String.format("https://image.tmdb.org/t/p/w780/%s", backdropPath);
     }
 
     public String getLink() {

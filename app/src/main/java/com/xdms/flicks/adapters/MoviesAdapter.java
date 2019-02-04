@@ -2,6 +2,7 @@ package com.xdms.flicks.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -81,7 +82,12 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
             tvTitle.setText(movie.getTitle());
             tvOverview.setText(movie.getOverview());
             tvDate.setText(movie.getDate());
-            Glide.with(context).load(movie.getPosterPath()).into(ivPoster);
+            String imageUrl = movie.getPosterPath();
+            if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
+            {
+                imageUrl = movie.getBackdropPath();
+            }
+            Glide.with(context).load(imageUrl).into(ivPoster);
             btnLink.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
