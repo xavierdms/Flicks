@@ -72,7 +72,7 @@
         android:linksClickable="true"
         android:text="@string/view_on_themoviedb"
         android:textAllCaps="false"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/colorLink"
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/ivPoster"
         app:layout_constraintTop_toBottomOf="@+id/tvDate" />
