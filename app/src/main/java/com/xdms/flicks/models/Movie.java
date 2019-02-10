@@ -21,6 +21,7 @@ public class Movie
     String link;
     String backdropPath;
     double voteAverage;
+    int trailerId;
 
 
 
@@ -37,6 +38,7 @@ public class Movie
         link = toString().format("https://www.themoviedb.org/movie/%s", movie_id);
         backdropPath = jsonObject.getString("backdrop_path");
         voteAverage = jsonObject.getDouble("vote_average");
+        trailerId = jsonObject.getInt("id");
 
     }
 
@@ -81,5 +83,10 @@ public class Movie
 
     public double getVoteAverage() {
         return voteAverage;
+    }
+
+
+    public int getTrailerId() {
+        return trailerId;
     }
 }
