@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,8 +16,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.xdms.flicks.DetailActivity;
 import com.xdms.flicks.R;
 import com.xdms.flicks.models.Movie;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -63,6 +67,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         ImageView ivPoster;
         TextView tvDate;
         Button btnLink;
+        ConstraintLayout container;
 
 
 
@@ -73,6 +78,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
             ivPoster = itemView.findViewById(R.id.ivPoster);
             tvDate = itemView.findViewById(R.id.tvDate);
             btnLink = itemView.findViewById(R.id.btnLink);
+            container = itemView.findViewById(R.id.container);
 
 
         }
@@ -96,6 +102,15 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
                     i.setData(Uri.parse(url));
                     startActivity(context, i, null);
                 }
+            });
+            container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent detail = new Intent(context, DetailActivity.class);
+                    detail.putExtra("movie", Parcels.wrap(movie));
+                    context.startActivity(detail);
+
+                }       
             });
         }
     }
